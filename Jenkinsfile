@@ -53,7 +53,7 @@ pipeline {
                 
             }
         }
-        //stage3 : Deploying
+        //stage4 : Deploying
         stage ('Deploy') {
             steps {
                 echo 'deploying .........'
@@ -76,7 +76,30 @@ pipeline {
 
         }
 
-        //stage 4 
+        //stage5 : Deploying build artifacts to docker
+        stage ('Deploy to Docker') {
+            steps {
+                echo 'deploying .........'
+                sshPublisher(publishers: 
+                [sshPublisherDesc(
+                    configName: 'Ansible Controler', 
+                    transfers: [
+                        sshTransfer(
+                            cleanRemote: false,
+                            execCommand: 'ansible-playbook /opt/playbooks/downloadanddeply_docker.yml -i /opt/playbooks/hosts', 
+                            execTimeout: 120000,                            
+                        )
+                    
+                    ], 
+                    usePromotionTimestamp: false, 
+                    useWorkspaceInPromotion: false, 
+                    verbose: false)
+                    ])
+            }
+
+        }
+
+        //stage 6 
         stage ('Print Environment variables') {
             steps {
                 echo "Atrtifact ID is '${ArtifactId}'"
