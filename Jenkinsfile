@@ -43,7 +43,7 @@ pipeline {
                     type: 'war']], 
                     credentialsId: 'f92b62ad-7e02-4391-85e7-b369aca9fd6e', 
                     groupId: "${GroupId}", 
-                    nexusUrl: '172.20.10.149:8081', 
+                    nexusUrl: '172.20.10.142:8081', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: "${NexusRepo}", 
@@ -97,7 +97,7 @@ pipeline {
                     ])
             }
 
-        }
+        } 
 
         //stage 6 
         stage ('Print Environment variables') {
