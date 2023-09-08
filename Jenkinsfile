@@ -27,11 +27,8 @@ pipeline {
         stage ('Code Analysis - Sonarqube') {
             steps {
                 echo 'Source code publish to Sonarqube for static code analysis.......'
-                def scannerHome = tool 'SonarScanner 4.0';
                 withSonarQubeEnv('sonarqube') { 
-                    sh "${scannerHome}/bin/sonar-scanner"   
                     sh 'mvn sonar:sonar'
-
                 }       
             }
         }
