@@ -56,7 +56,7 @@ pipeline {
         //stage4 : Deploying
         stage ('Deploy') {
             steps {
-                echo 'deploying .........'
+                echo 'tomcat-deploying .........'
                 sshPublisher(publishers: 
                 [sshPublisherDesc(
                     configName: 'Ansible Controler', 
@@ -79,7 +79,7 @@ pipeline {
         //stage5 : Deploying build artifacts to docker
         stage ('Deploy to Docker') {
             steps {
-                echo 'deploying .........'
+                echo 'Docker - deploying .........'
                 sshPublisher(publishers: 
                 [sshPublisherDesc(
                     configName: 'Ansible Controler', 
