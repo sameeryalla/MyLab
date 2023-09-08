@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Source code publish to Sonarqube for static code analysis.......'
                 withSonarQubeEnv('sonarqube') { 
-                        sh 'sonar:sonar'
+                        sh 'mvn sonar:sonar'
                 }       
             }
         }
