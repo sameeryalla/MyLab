@@ -23,6 +23,16 @@ pipeline {
             }
 
         }
+         //stage2 : Code Quality Check - Sonarqube
+        stage ('Code Analysis - Sonarqube') {
+            steps {
+                echo 'Source code publish to Sonarqube for static code analysis.......'
+                withSonarQubeEnv('sonarqube') { 
+                        sh 'sonar:sonar'
+                }       
+            }
+        }
+
         //stage2 : Testing
         stage ('Test') {
             steps {
